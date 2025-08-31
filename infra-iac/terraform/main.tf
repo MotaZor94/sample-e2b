@@ -53,9 +53,9 @@ locals {
     server = {
       instance_type_x86    = "t3.medium"
       instance_type_arm    = "t4g.medium"
-      desired_capacity = 2
-      max_size         = 2
-      min_size         = 2
+      desired_capacity = 3
+      max_size         = 3
+      min_size         = 3
     }
     # Client nodes run workloads and containers
     client = {
