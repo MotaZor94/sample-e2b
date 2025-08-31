@@ -67,8 +67,8 @@ locals {
     }
     # API nodes run the API service
     api = {
-      instance_type_x86    = "t3.small"
-      instance_type_arm    = "t4g.small"
+      instance_type_x86    = "t3.large"
+      instance_type_arm    = "t4g.large"
       desired_capacity = 1
       max_size         = 1
       min_size         = 1
