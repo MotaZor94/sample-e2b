@@ -52,7 +52,7 @@ locals {
     # Server nodes run Consul and Nomad servers
     server = {
       instance_type_x86    = "t3.medium"
-      instance_type_arm    = "t4g.medium"
+      instance_type_arm    = "t4g.medium"  
       desired_capacity = 3
       max_size         = 3
       min_size         = 3
@@ -62,21 +62,21 @@ locals {
       instance_type_x86    = "t3.large"
       instance_type_arm    = "t4g.large"
       desired_capacity = 1
-      max_size         = 1
+      max_size         = 3
       min_size         = 0
     }
     # API nodes run the API service
     api = {
-      instance_type_x86    = "t3.large"
-      instance_type_arm    = "t4g.large"
+      instance_type_x86    = "t3.xlarge"
+      instance_type_arm    = "t4g.xlarge"
       desired_capacity = 1
       max_size         = 1
       min_size         = 1
     }
     # Build nodes for environment building (currently not active)
     build = {
-      instance_type_x86    = "t3.small"
-      instance_type_arm    = "t4g.small"
+      instance_type_x86    = "t3.large"
+      instance_type_arm    = "t4g.large"
       desired_capacity = 0
       max_size         = 0
       min_size         = 0
@@ -420,7 +420,7 @@ resource "aws_launch_template" "server" {
     device_name = "/dev/sda1"
 
     ebs {
-      volume_size           = 20
+      volume_size           = 100
       volume_type           = "gp3"
       encrypted             = true
       delete_on_termination = true
@@ -556,7 +556,7 @@ resource "aws_launch_template" "client" {
     device_name = "/dev/sda1"
 
     ebs {
-      volume_size           = 30
+      volume_size           = 300
       volume_type           = "gp3"
       encrypted             = true
       delete_on_termination = true
@@ -567,7 +567,7 @@ resource "aws_launch_template" "client" {
     device_name = "/dev/sda2"
 
     ebs {
-      volume_size           = 100
+      volume_size           = 500
       volume_type           = "gp3"
       encrypted             = true
       delete_on_termination = true
@@ -986,7 +986,7 @@ resource "aws_launch_template" "api" {
     device_name = "/dev/sda1"
 
     ebs {
-      volume_size           = 20
+      volume_size           = 100
       volume_type           = "gp3"
       encrypted             = true
       delete_on_termination = true
@@ -1134,7 +1134,7 @@ resource "aws_launch_template" "build" {
     device_name = "/dev/sda1"
 
     ebs {
-      volume_size           = 20
+      volume_size           = 100
       volume_type           = "gp3"
       encrypted             = true
       delete_on_termination = true
